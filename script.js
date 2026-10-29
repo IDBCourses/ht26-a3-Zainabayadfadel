@@ -26,11 +26,19 @@ import { createShape } from "./shape.js";
 // ---------- Settings ----------
 // Settings variables should contain all of the "fixed" parts of your programs
 // For example: which notes you can play, how fast things move, the tempo.
-const note = "C4"; // the note played when the pointer goes down
+const notes = ["C3", "C4", "C5"]; // the note played when the pointer goes down
 
 // ---------- State ----------
 // State variables are the parts of your program that change over time.
 // For example: where the pointer is, how fast it's moving, or whether a drone is on.
+// min funktion
+let previousX;
+let previousY;
+let previousTime;
+let speed = 0;
+let pointerX = 0.5;
+let pointerY = 0.5;
+let example;
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -44,31 +52,88 @@ function update() {
 
 // ---------- Use ----------
 // Use the state to make sound and move shapes. This is called every 100ms.
-function use() {
-  setTimeout(use, 100); // call use() again in 100 milliseconds
-}
 
-// ---------- Controls (Event Handlers) ----------
-// Runs every time the pointer goes down: a click, a tap or a pen touch.
+function use() {
+  example.setPosition(pointerX, pointerY);
+  example.setSize(30 + speed * 5);
+  setTimeout(use, 100);
+} // call use() again in 100 milliseconds
+
+  // Runs every time the pointer goes down: a click, a tap or a pen touch.
 function pointerDown(event) {
   Tone.start(); // browsers only allow sound after the player has pressed something
-
   console.log("Pointer down at", event.clientX, event.clientY);
-  synth.triggerAttackRelease(note, "8n"); // play the note for an eighth note
+  synth.triggerAttackRelease(notes[1], "8n"); // play the note for an eighth note
 }
+
+//min funktion
+function pointerMove(event) {
+
+  pointerX = event.clientX / window.innerWidth;
+  pointerY = event.clientY / window.innerHeight;
+
+  if (previousX === undefined || previousY === undefined || previousTime === undefined) {
+  previousX = event.clientX;
+  previousY = event.clientY;
+  previousTime = event.timeStamp;
+  return;
+}
+
+
+let movementX = event.clientX - previousX;
+let movementY = event.clientY - previousY;
+let movementTime = event.timeStamp - previousTime;
+let noteIndex = 1;
+speed = Math.sqrt(movementX ** 2 + movementY ** 2) / movementTime;
+
+previousX = event.clientX;
+previousY = event.clientY;
+previousTime = event.timeStamp;
+
+console.log("Speed:", speed);
+
+
+if (speed > 0.5) {
+  noteIndex = 2;
+} else if (Math.abs(movementY) > Math.abs(movementX)) {
+  if (movementY < 0) {
+    noteIndex = 2;
+  } else if (movementY > 0) {
+    noteIndex = 0;
+  }
+} else if (movementX !== 0) {
+  noteIndex = 1;
+}
+
+let selectedNote;
+
+for (let i = 0; i < notes.length; i++) {
+  if (i === noteIndex) {
+    selectedNote = notes[i];
+  }
+}
+
+synth.triggerAttackRelease(selectedNote, "8n");
+
+}
+
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
-  update(); // start the update loop
-  use(); // start the use loop
 
   // Example: a shape near the middle of the window. Replace it with your own.
-  const example = createShape("example");
+  example = createShape("example");
   example.setPosition(0.5, 0.5);
 
-  // Put your event listener code here
+
+ update(); // start the update loop
+  use(); // start the use loop
+ // min funktion // Put your event listener code here
+  window.addEventListener("pointermove", pointerMove)
   window.addEventListener("pointerdown", pointerDown);
 }
+
+
 
 setup(); // Always remember to call setup()!
