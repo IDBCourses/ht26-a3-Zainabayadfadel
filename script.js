@@ -36,6 +36,7 @@ let previousX;
 let previousY;
 let previousTime;
 let speed = 0;
+let lastNoteTime = 0;
 let pointerX = 0.5;
 let pointerY = 0.5;
 let example;
@@ -113,7 +114,10 @@ for (let i = 0; i < notes.length; i++) {
   }
 }
 
-synth.triggerAttackRelease(selectedNote, "8n");
+if (event.timeStamp - lastNoteTime >= 150) {
+  synth.triggerAttackRelease(selectedNote, "8n");
+  lastNoteTime = event.timeStamp;
+}
 
 }
 
