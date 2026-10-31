@@ -1,10 +1,10 @@
 # My instrument
 
-**Play it here:** <!-- Paste your GitHub Pages link here, https://idbcourses.github.io/ht26-a3-Zainabayadfadel/ -->
+**Play it here:** https://idbcourses.github.io/ht26-a3-Zainabayadfadel/ 
 
-**Name:** <!-- Zainab Fadel  Am8013 -->
+**Name:** Zainab Fadel  Am8013 
 
-<!-- One or two sentences: This is a pointer-controlled musical instrument made with Tone.js. Moving the pointer changes the notes depending on the speed and direction of the movement. A shape follows the pointer and changes size as the movement speed changes. -->
+One or two sentences: This is a pointer-controlled musical instrument made with Tone.js. Moving the pointer changes the notes depending on the speed and direction of the movement. A shape follows the pointer and changes size as the movement speed changes. 
 
 ## How to play
 
