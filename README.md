@@ -1,21 +1,26 @@
 # My instrument
 
-**Play it here:** <!-- Paste your GitHub Pages link here, e.g. https://idbcourses.github.io/your-repo-name/ -->
+**Play it here:** <!-- Paste your GitHub Pages link here, https://idbcourses.github.io/ht26-a3-Zainabayadfadel/ -->
 
-**Name:** <!-- Your name and MAU ID -->
+**Name:** <!-- Zainab Fadel  Am8013 -->
 
-<!-- One or two sentences: what kind of instrument is it, and what is it like to play? -->
+<!-- One or two sentences: This is a pointer-controlled musical instrument made with Tone.js. Moving the pointer changes the notes depending on the speed and direction of the movement. A shape follows the pointer and changes size as the movement speed changes. -->
 
 ## How to play
 
 <!-- Fill in the table with a row for everything the player can do with the pointer: clicking, moving slowly or fast, moving in circles, holding still... Say what happens to the sound and to the shapes. If you added keys, give them rows too. -->
 
-| When you...  | The sound...                         | The shapes... |
+| When you... | The sound... | The shapes... |
 | ------------ | ------------------------------------ | ------------- |
-| Click or tap | Plays a C4 (the example: replace it) | Nothing yet   |
-|              |                                      |               |
+| Click or tap | Plays the note C4 | Nothing changes |
+| Move the pointer slowly | Plays notes depending on the direction | The shape follows the pointer |
+| Move the pointer quickly | Plays a higher note (C5) | The shape becomes larger |
+| Move the pointer upwards | Plays C5 | The shape follows the pointer |
+| Move the pointer downwards | Plays C3 | The shape follows the pointer |
+| Move the pointer horizontally | Plays C4 | The shape follows the pointer |
 
-<!-- Anything else a player needs to know: how to get started, a good thing to try first. -->
+<!-- Click or tap anywhere on the page to start the sound. Then move the pointer in different directions and try moving it at different speeds to explore the different notes and how the shape changes.
+ -->
 
 ---
 
